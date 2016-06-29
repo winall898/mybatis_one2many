@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserDaoMapping">
+	<resultMap type="User" id="userResult">
+	  <id property="id" column="userid"/>
+	  <result property="username" column="username"/>
+	  <result property="password" column="password"/>
+	  <result property="address" column="address"/>
+	</resultMap>
+	
+	<select id="getPageUsers" resultMap="userResult" resultType="list" parameterType="java.util.Map"> 
+	     select 
+	     	u.userid,
+	     	u.username,
+	     	u.password,
+	     	u.address
+	     from pg_userinfo u limit #{page}, #{size}
+	</select>
+</mapper>
